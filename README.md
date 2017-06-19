@@ -15,4 +15,4 @@ run.sh should be created and should look like this:
 
 `npm start`
 
-Then you can build the image with `docker build -t some/thing .` and execute with `docker run -d --restart always --net=host some/thing`
+Then you can build the image with `docker build -t some/thing .` and execute with `docker run -d --restart always --name some-name --net=host some/thing`

@@ -3,21 +3,13 @@
 # Will invoke with --net=host as well so it will be able to detect
 # and restart always
 
-FROM node:7-alpine
-
-ADD ./run.sh /app/run.sh
-
-RUN apk update && \
-	apk add libpcap && \
-	apk add libpcap-dev && \
-	apk add git && \
-	apk add python && \
-	apk add make && \
-	apk add g++ && \
-	mkdir /app && \
-	cd /app && \
-	git clone https://git .
-
+FROM node:7
 WORKDIR /app
+ADD . ./
 
-CMD ["run.sh"]
+RUN apt-get update && \
+	apt-get install -y libpcap-dev && \
+	cd /app && \
+	npm install
+
+CMD ["./run.sh"]
